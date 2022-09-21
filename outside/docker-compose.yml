@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+
+  flask2:
+    build: ./flask
+    container_name: flask2
+    restart: always
+    environment:
+      - DEBUG=1
+    expose:
+      - 5000
+    # ports:
+    #   - 5000:5000
+    networks:
+      - flask_network
+
+  nginx2:
+    build: ./nginx
+    container_name: nginx2
+    restart: always
+    ports:
+      - 80:80
+    networks:
+      - flask_network
+
+networks:
+  flask_network:
